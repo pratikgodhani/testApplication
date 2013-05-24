@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.model.UserDetail;
 import com.test.service.ILoginService;
 
-//@Controller
+@Controller
 public class LoginController {
 
 	@Autowired
