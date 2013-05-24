@@ -1,0 +1,70 @@
+﻿<head>
+
+    <title>| Login </title>
+
+    <!--themes-->
+	<script src="resources/jquery-1.9.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    function doAjaxPost() {
+	        // get the form values
+			var form = $('#registration');
+	        $.ajax({
+	        type: "POST",
+	        url: form.attr( 'action' ),
+	        data: form.serialize(),
+	        success: function(response){
+				// we have the response
+				clearForm();
+				$('#info').html(response);
+	        },
+	        error: function(e){
+				alert('Error: ' + e);
+	        }
+	        });
+        }
+		function clearForm()
+		{
+			$(':input').not(':button, :submit, :reset, :hidden').val('');
+		}
+	 </script>
+</head>
+<html>
+<body>
+<form name="registration" id="registration" method="POST" action="$application.internalURL('/validateLogin')">
+	<table cellspacing="0" cellpadding="0" border="0" align="center">
+		<tbody>
+		<tr>
+			<td colspan="2">
+				<div id="info" style="color: green;"></div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				User Name
+			</td>
+			<td>
+				<input type="text" name="userName" id="userName" value="$user.userName"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Password
+			</td>
+			<td>
+				<input type="secret" name="userPwd" id="userPwd" value="$user.userPwd"/>
+			</td>
+		</tr>
+		<tr align="center">
+			<td colspan="2">
+				<input type="button" name="login" value="Login" onclick="doAjaxPost(); return false;">
+				<input type="button" name="cancel" value="Cancel"  onclick="clearForm(); return false;">
+			</td>
+		</tr>
+		
+		</tbody>
+	</table>
+
+</form>
+</body>
+</html>
