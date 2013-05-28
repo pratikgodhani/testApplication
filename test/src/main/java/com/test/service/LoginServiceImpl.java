@@ -14,7 +14,6 @@ public class LoginServiceImpl implements ILoginService {
 	@Autowired
 	UserDetailRepository userDetailRepository;
 
-	@Override
 	public boolean isValidUser(final String userName,final String password) throws Exception {
 		List<UserDetail> userDetailList = userDetailRepository.validateUsers(userName, password);
 		if (userDetailList != null) {
