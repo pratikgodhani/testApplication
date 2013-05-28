@@ -12,12 +12,12 @@ public class RegistrationService implements IRegistrationService {
 	@Autowired
 	UserDetailRepository userDetailRepository;
 
-	public String addUserDetails(final UserDetail userDetail) throws Exception {
+	public boolean addUserDetails(final UserDetail userDetail) throws Exception {
 		UserDetail detail = userDetailRepository.save(userDetail);
 		if (null != detail) {
-			return "success";
+			return true;
 		} else {
-			return "fail";
+			return false;
 		}
 	}
 }

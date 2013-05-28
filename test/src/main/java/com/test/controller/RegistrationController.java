@@ -38,8 +38,8 @@ public class RegistrationController {
 	public @ResponseBody String addRegistrationDetails(@ModelAttribute(value = "SpringWeb") UserDetail userDetail) throws Exception {
 		String failedMsg = env.getProperty("registrationFailMsg");
 		String successMsg = env.getProperty("registrationSuccessMsg");
-		String result1 = registrationService.addUserDetails(userDetail);
-		if (result1.equals("success"))
+		boolean result = registrationService.addUserDetails(userDetail);
+		if (result)
 		{
 			return successMsg;
 		}

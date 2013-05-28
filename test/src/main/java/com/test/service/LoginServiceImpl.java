@@ -15,21 +15,11 @@ public class LoginServiceImpl implements ILoginService {
 	UserDetailRepository userDetailRepository;
 
 	@Override
-	public String validateUserDetails(final String userName,
-			final String password) throws Exception {
-		String result = "fail";
-		
-		/*List<UserDetail> userDetailList = userDetailRepository.findByUserNameAndUserPwd(
-				userName, password);*/
-		
+	public boolean isValidUser(final String userName,final String password) throws Exception {
 		List<UserDetail> userDetailList = userDetailRepository.validateUsers(userName, password);
-
-		
-		
-		if (null != userDetailList && userDetailList.size() > 0) {
-			result = "success";
+		if (userDetailList != null) {
+			return (userDetailList.size() > 0);
 		}
-		return result;
+		return false;
 	}
-
 }

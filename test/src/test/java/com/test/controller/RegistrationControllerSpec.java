@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.model.UserDetail;
 import com.test.service.IRegistrationService;
-import com.test.service.RegistrationService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegistrationControllerSpec {
@@ -52,10 +51,11 @@ public class RegistrationControllerSpec {
 	public void givenRegistrationDetailsShouldGetSavedAndReturnSuccessRegistrationView() throws Exception {
 		
 		//Given
-		String success = "success";
+		boolean success = true;
 		
 		//When
 		when(registrationService.addUserDetails(userDetail)).thenReturn(success);
+		when(env.getProperty("registrationSuccessMsg")).thenReturn("User has been added to the list.");
 		String msg = controller.addRegistrationDetails(userDetail);
 		
 		//Then
@@ -67,10 +67,11 @@ public class RegistrationControllerSpec {
 	public void givenRegistrationdetailsShouldReturnFail() throws Exception {
 		
 		//Given
-		String fail = "fail";
+		boolean fail = false;
 		
 		//when
 		when(registrationService.addUserDetails(userDetail)).thenReturn(fail);
+		when(env.getProperty("registrationFailMsg")).thenReturn("Sorry, an error has occur. User has not been added to list.");
 		String msg = controller.addRegistrationDetails(userDetail);
 		
 		//then

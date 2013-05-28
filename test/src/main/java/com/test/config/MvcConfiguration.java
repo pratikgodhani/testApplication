@@ -1,17 +1,13 @@
 package com.test.config;
 
-import java.net.UnknownHostException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.MongoDbFactory;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,22 +16,17 @@ import org.springframework.web.servlet.view.velocity.VelocityConfig;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
-import com.mongodb.MongoClient;
+import com.test.security.CustomAuthenticationProvider;
 
 @Configuration
-@ComponentScan(basePackages = "com.test")
+@ComponentScan(basePackages = "com.test", 
+				excludeFilters={@Filter(value=Service.class), @Filter(value=Repository.class),
+				@Filter(value=CustomAuthenticationProvider.class, type=FilterType.ASSIGNABLE_TYPE),
+				@Filter(value=AppConfiguration.class, type=FilterType.ASSIGNABLE_TYPE)})
 @EnableWebMvc
-@PropertySource({"registration.properties", "database.properties"})
-@EnableMongoRepositories(basePackages = "com.test.repository")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
-
-	@Autowired
-	Environment env;
 	@Autowired
 	ApplicationVelocityUtil applicationVelocityUtil;
-	
-	@Autowired
-	MongoDbFactory mongoDbFactory;
 
 	@Bean
 	public VelocityConfig velocityConfig() {
@@ -56,24 +47,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		return viewResolver;
 	}
 
-	@Bean
-	public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-		MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(
-				new MongoClient(env.getProperty("host"), 27017),
-				env.getProperty("databaseName"));
-		return mongoDbFactory;
-	}
-
-	@Bean
-	public MongoTemplate mongoTemplate() throws UnknownHostException {
-		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
-		// mongoTemplate.set
-		return mongoTemplate;
-	}
-
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 }

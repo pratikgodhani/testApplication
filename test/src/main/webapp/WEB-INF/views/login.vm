@@ -15,6 +15,7 @@
 	        success: function(response){
 				// we have the response
 				clearForm();
+				alert(response);
 				$('#info').html(response);
 	        },
 	        error: function(e){
@@ -30,7 +31,7 @@
 </head>
 <html>
 <body>
-<form name="registration" id="registration" method="POST" action="#springUrl('/validateLogin')">
+<form name="registration" id="registration" method="POST" action="jspring_security_check">
 	<table cellspacing="0" cellpadding="0" border="0" align="center">
 		<tbody>
 		<tr>
@@ -44,7 +45,7 @@
 				User Name
 			</td>
 			<td>
-				<input type="text" name="userName" id="userName" value="$user.userName"/>
+				<input type="text" name="j_username" id="j_username" value="$user.userName"/>
 			</td>
 		</tr>
 		<tr>
@@ -52,12 +53,12 @@
 				Password
 			</td>
 			<td>
-				<input type="secret" name="userPwd" id="userPwd" value="$user.userPwd"/>
+				<input type="secret" name="j_password" id="j_password" value="$user.userPwd"/>
 			</td>
 		</tr>
 		<tr align="center">
 			<td colspan="2">
-				<input type="button" name="login" value="Login" onclick="doAjaxPost(); return false;">
+				<input type="submit" name="login" value="Login">
 				<input type="button" name="cancel" value="Cancel"  onclick="clearForm(); return false;">
 			</td>
 		</tr>
