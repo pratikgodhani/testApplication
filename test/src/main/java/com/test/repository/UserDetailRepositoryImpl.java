@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import com.test.Constants;
 import com.test.model.UserDetail;
 
 public class UserDetailRepositoryImpl implements UserRepositoryCustom{
@@ -17,7 +18,7 @@ public class UserDetailRepositoryImpl implements UserRepositoryCustom{
 	@Override
 	public List<UserDetail> validateUsers(String name, String password) {
 		
-		Query query=new Query().addCriteria(Criteria.where("userName").is("USER"+name).andOperator(Criteria.where("userPwd").is(password)));
+		Query query=new Query().addCriteria(Criteria.where("userName").is(Constants.USER_PREFIX+name).andOperator(Criteria.where("userPwd").is(password)));
 		
 		return mongoTemplate.find(query,UserDetail.class);
 		

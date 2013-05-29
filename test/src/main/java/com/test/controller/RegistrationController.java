@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.Constants;
 import com.test.model.UserDetail;
 import com.test.service.IRegistrationService;
 
@@ -21,6 +22,8 @@ import com.test.service.IRegistrationService;
  */
 @Controller
 public class RegistrationController {
+
+
 
 	@Autowired
 	Environment env;
@@ -38,6 +41,7 @@ public class RegistrationController {
 	public @ResponseBody String addRegistrationDetails(@ModelAttribute(value = "SpringWeb") UserDetail userDetail) throws Exception {
 		String failedMsg = env.getProperty("registrationFailMsg");
 		String successMsg = env.getProperty("registrationSuccessMsg");
+		userDetail.setUserName(Constants.USER_PREFIX+userDetail.getUserName());
 		boolean result = registrationService.addUserDetails(userDetail);
 		if (result)
 		{
