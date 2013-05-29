@@ -1,1 +1,11 @@
-Welcome ....  You are Authenticated
+Welcome ....  
+
+<table >
+	<tr>
+		<td> <a href="#springUrl('/login')">Login</a></td>
+    </tr>
+	
+	<tr>
+		<td> <a href="#springUrl('/register')">Register</a></td>
+    </tr>
+</table>
