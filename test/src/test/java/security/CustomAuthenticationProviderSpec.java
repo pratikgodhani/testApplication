@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 
 import com.test.model.UserDetail;
 import com.test.security.CustomAuthenticationProvider;
-import com.test.service.ILoginService;
+import com.test.service.LoginService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomAuthenticationProviderSpec {
@@ -28,7 +28,7 @@ public class CustomAuthenticationProviderSpec {
 	Authentication authentication;
 	
 	@Mock Model model;
-	@Mock ILoginService iLoginService;
+	@Mock LoginService iLoginService;
 	@Mock UserDetail userDetail;
 	@Mock Environment env;
 	

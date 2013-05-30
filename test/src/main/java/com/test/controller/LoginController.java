@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.model.UserDetail;
-import com.test.service.ILoginService;
+import com.test.service.LoginService;
 
 @Controller
 public class LoginController {
@@ -16,7 +16,7 @@ public class LoginController {
 	@Autowired
 	Environment env;
 	@Autowired
-	ILoginService loginService;
+	LoginService loginService;
 
 	@RequestMapping("/login")
 	public ModelAndView login(Model model) {

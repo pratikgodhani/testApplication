@@ -17,7 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.model.UserDetail;
-import com.test.service.ILoginService;
+import com.test.service.LoginService;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,7 +27,7 @@ public class LoginControllerSpec {
 	LoginController loginController = new LoginController ();
 	@Mock Model model;
 	@Mock UserDetail userDetail;
-	@Mock ILoginService loginService;
+	@Mock LoginService loginService;
 	
 	@Before
 	public void setup()

@@ -9,7 +9,7 @@ import com.test.model.UserDetail;
 import com.test.repository.UserDetailRepository;
 
 @Service
-public class LoginServiceImpl implements ILoginService {
+public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	UserDetailRepository userDetailRepository;

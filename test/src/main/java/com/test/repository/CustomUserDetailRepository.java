@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.test.model.UserDetail;
 
-public interface UserRepositoryCustom {
+public interface CustomUserDetailRepository {
 
 	public List<UserDetail> validateUsers(String name, String password);
 	

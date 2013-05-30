@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.stereotype.Component;
 
-import com.test.service.ILoginService;
+import com.test.service.LoginService;
 
 @SuppressWarnings("deprecation")
 @Component
@@ -20,7 +20,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	Environment env;
 	@Autowired
-	ILoginService loginService;
+	LoginService loginService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication)throws AuthenticationException {

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.Constants;
 import com.test.model.UserDetail;
-import com.test.service.IRegistrationService;
+import com.test.service.RegistrationService;
 
 /**
  * @author 
@@ -29,7 +29,7 @@ public class RegistrationController {
 	Environment env;
 	
 	@Autowired
-	IRegistrationService registrationService;
+	RegistrationService registrationService;
 	
 	@RequestMapping(value = "/register")
 	public ModelAndView getRegistration(Model model) {

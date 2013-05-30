@@ -1,6 +1,5 @@
 package com.test.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -25,8 +24,7 @@ import com.test.security.CustomAuthenticationProvider;
 				@Filter(value=AppConfiguration.class, type=FilterType.ASSIGNABLE_TYPE)})
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
-	@Autowired
-	ApplicationVelocityUtil applicationVelocityUtil;
+	
 
 	@Bean
 	public VelocityConfig velocityConfig() {
@@ -41,9 +39,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		viewResolver.setPrefix("");
 		viewResolver.setSuffix(".vm");
 		viewResolver.setExposeSpringMacroHelpers(true);
-		/*Map<String, Object> attributes = new HashMap<String, Object>();
-		attributes.put("application", applicationVelocityUtil);*/
-		//viewResolver.setAttributesMap(attributes);
 		return viewResolver;
 	}
 

@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.model.UserDetail;
-import com.test.service.IRegistrationService;
+import com.test.service.RegistrationService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegistrationControllerSpec {
@@ -27,7 +27,7 @@ public class RegistrationControllerSpec {
 	RegistrationController controller = new RegistrationController();
 	
 	@Mock Model model;
-	@Mock IRegistrationService registrationService;
+	@Mock RegistrationService registrationService;
 	@Mock UserDetail userDetail;
 	@Mock Environment env;
 	
