@@ -15,7 +15,7 @@ public class LoginServiceImpl implements LoginService {
 	UserDetailRepository userDetailRepository;
 
 	public boolean isValidUser(final String userName,final String password) throws Exception {
-		List<UserDetail> userDetailList = userDetailRepository.validateUsers(userName, password);
+		List<UserDetail> userDetailList = userDetailRepository.validateUser(userName, password);
 		if (userDetailList != null) {
 			return (userDetailList.size() > 0);
 		}

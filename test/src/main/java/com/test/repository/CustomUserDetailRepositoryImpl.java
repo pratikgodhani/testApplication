@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.test.Constants;
 import com.test.model.UserDetail;
 
-@Component("userDetailRepositoryImpl")
+@Repository("userDetailRepositoryImpl")
 public class CustomUserDetailRepositoryImpl implements CustomUserDetailRepository{
 
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
 	@Override
-	public List<UserDetail> validateUsers(String name, String password) {
+	public List<UserDetail> validateUser(String name, String password) {
 		
 		Query query=new Query().addCriteria(Criteria.where("userName").is(Constants.USER_PREFIX+name).andOperator(Criteria.where("userPwd").is(password)));
 		

@@ -6,7 +6,7 @@ import com.test.model.UserDetail;
 
 public interface CustomUserDetailRepository {
 
-	public List<UserDetail> validateUsers(String name, String password);
+	public List<UserDetail> validateUser(String name, String password);
 	
 	
 }
