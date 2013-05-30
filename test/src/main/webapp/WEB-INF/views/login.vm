@@ -53,7 +53,7 @@
 				Password
 			</td>
 			<td>
-				<input type="secret" name="j_password" id="j_password" value="$user.userPwd"/>
+				<input type="password" name="j_password" id="j_password" value="$user.userPwd"/>
 			</td>
 		</tr>
 		<tr align="center">

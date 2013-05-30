@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<!-- Configure security -->
+	<security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled" />
+	<!-- Unprotected Resources -->
+	<security:http pattern="/unsecured" security="none" auto-config="false" />
+	<!-- End of Unprotected Resources -->
+
+	<!-- Configure security -->
+	<security:http once-per-request="true" create-session="never" servlet-api-provision="true" access-decision-manager-ref="accessDecision"
+		auto-config="true" disable-url-rewriting="true"
+		access-denied-page="/unsecured" >
+		
+		<security:http-basic />
+		<security:form-login login-page='/login' login-processing-url="/jspring_security_check" authentication-success-handler-ref="authenticationsuccesshandler"
+			authentication-failure-url="/login?error=1" />
+
+		<security:logout invalidate-session="true" logout-url="/logout" logout-success-url="/login" />
+		<security:intercept-url pattern="/" />
+		
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider ref="customAuthenticationProvider"/>
+	</security:authentication-manager>
+	
+	<bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+
+	<bean name="authenticationsuccesshandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="alwaysUseDefaultTargetUrl" value="false" />
+		<property name="defaultTargetUrl" value="/home" />
+	</bean>
+	
+
+
+	<bean id="accessDecision" class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<bean class="org.springframework.security.access.vote.RoleVoter">
+					<property name="rolePrefix" value="" />
+				</bean>
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</list>
+		</property>
+	</bean>
+</beans> 
