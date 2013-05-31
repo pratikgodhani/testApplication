@@ -1,5 +1,8 @@
 package com.test.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 import com.test.security.CustomAuthenticationProvider;
+import com.test.security.VelocitySecurityWrapper;
 
 @Configuration
 @ComponentScan(basePackages = "com.test", 
@@ -36,9 +40,13 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver viewResolver() {
 		VelocityViewResolver viewResolver = new VelocityViewResolver();
+		VelocitySecurityWrapper securityWrapper = new VelocitySecurityWrapper();
 		viewResolver.setPrefix("");
 		viewResolver.setSuffix(".vm");
-		viewResolver.setExposeSpringMacroHelpers(true);
+		Map<String, VelocitySecurityWrapper> attributes = new HashMap<String, VelocitySecurityWrapper>();
+	    attributes.put("vsecurity", securityWrapper);
+		viewResolver.setAttributesMap(attributes);
+		//viewResolver.setExposeSpringMacroHelpers(true);
 		return viewResolver;
 	}
 

@@ -22,6 +22,7 @@ public class CustomAuthentication implements Authentication {
 		this.authorities = authorities;
 		this.details = details;
 		this.principal = principal;
+		this.credentials = credentials;
 		this.authenticated = authenticated;
 
 	}

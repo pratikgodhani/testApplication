@@ -43,7 +43,7 @@
 				First Name
 			</td>
 			<td>
-				<input type="text" name="firstName" id="firstName" value="$user.firstName"/>
+				<input type="text" name="firstName" id="firstName" value="$!user.firstName"/>
 			</td>
 		</tr>
 		<tr>
@@ -51,7 +51,7 @@
 				Last Name
 			</td>
 			<td>
-				<input type="text" name="lastName" id="lastName" value="$user.lastName"/>
+				<input type="text" name="lastName" id="lastName" value="$!user.lastName"/>
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +59,7 @@
 				User Name
 			</td>
 			<td>
-				<input type="text" name="userName" id="userName" value="$user.userName"/>
+				<input type="text" name="userName" id="userName" value="$!user.userName"/>
 			</td>
 		</tr>
 		<tr>
@@ -67,7 +67,7 @@
 				Password
 			</td>
 			<td>
-				<input type="secret" name="userPwd" id="userPwd" value="$user.userPwd"/>
+				<input type="secret" name="userPwd" id="userPwd" value="$!user.userPwd"/>
 			</td>
 		</tr>
 		<tr>
@@ -75,7 +75,7 @@
 				Email
 			</td>
 			<td>
-				<input type="text" name="email" id="email" value="$user.email"/>
+				<input type="text" name="email" id="email" value="$!user.email"/>
 			</td>
 		</tr>
 		<tr>
@@ -83,7 +83,7 @@
 				Phone
 			</td>
 			<td>
-				<input type="text" name="phone" id="phone" value="$user.phone"/>
+				<input type="text" name="phone" id="phone" value="$!user.phone"/>
 			</td>
 		</tr>
 		<tr align="center">

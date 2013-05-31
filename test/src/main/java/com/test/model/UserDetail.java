@@ -1,12 +1,13 @@
 package com.test.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
 public class UserDetail {
 	@Id
-	private String id;
+	private ObjectId id;
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -14,15 +15,6 @@ public class UserDetail {
 	private String email;
 	private String phone;
 
-	public UserDetail() {
-		this.firstName = "";
-		this.lastName = "";
-		this.userName = "";
-		this.userPwd = "";
-		this.email = "";
-		this.phone = "";
-		this.id = "";
-	}
 
 	public String getUserName() {
 		return userName;
@@ -64,13 +56,6 @@ public class UserDetail {
 		this.lastName = lastName;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getPhone() {
 		return phone;

@@ -1,2 +1,18 @@
 Only authenticated user/admin should see this...
+<br/><br/>
+Testing the Object $vsecurity
+<br/><br/>
+Name of the principal is: ${vsecurity.userName}
+<br/><br/>
+#if($vsecurity.authorizedUser)
+    This is for user
+#end
+<br/><br/>
+#if($vsecurity.authorizedAdmin)
+     This is for ADMIN
+#end
+<br/><br/>
+
+
+
 <a href="logout">Log Out</a>
