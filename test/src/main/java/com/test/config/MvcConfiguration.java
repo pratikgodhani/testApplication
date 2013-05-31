@@ -46,7 +46,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		Map<String, VelocitySecurityWrapper> attributes = new HashMap<String, VelocitySecurityWrapper>();
 	    attributes.put("vsecurity", securityWrapper);
 		viewResolver.setAttributesMap(attributes);
-		//viewResolver.setExposeSpringMacroHelpers(true);
+		viewResolver.setExposeSpringMacroHelpers(true);
 		return viewResolver;
 	}
 
