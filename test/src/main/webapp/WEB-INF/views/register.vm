@@ -58,14 +58,14 @@
 </head>
 <html>
 <body>
-	<spring:bind/>
+
 <form name="registration" id="registration" method="POST" action="#springUrl('/addRegistration')">
 	<table cellspacing="0" cellpadding="0" border="0" align="center">
 		<tbody>
 		<tr>
 			<td colspan="2">
 				<div id="info" style="color: green;"></div>
-                <div id="error"></div>
+          
 			</td>
 		</tr>
 		<tr>
