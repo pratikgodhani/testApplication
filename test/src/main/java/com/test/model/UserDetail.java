@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
-public class UserDetail {
+public class UserDetail{
 	@Id
 	private ObjectId id;
 	private String firstName;
@@ -64,4 +64,7 @@ public class UserDetail {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	
+	
 }

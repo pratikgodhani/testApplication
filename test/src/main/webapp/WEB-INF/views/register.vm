@@ -1,27 +1,55 @@
-﻿<head>
+<head>
 
     <title>| Registration </title>
 
+	<style type="text/css">
+		
+		.error{
+		color:#ff0000;
+		}
+		
+    </style>
+	
+	
     <!--themes-->
 	<script src="resources/jquery-1.9.1.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	    function doAjaxPost() {
-	        // get the form values
+	          // get the form values
 			var form = $('#registration');
-	        $.ajax({
-	        type: "POST",
-	        url: form.attr( 'action' ),
-	        data: form.serialize(),
-	        success: function(response){
-				// we have the response
-				clearForm();
-				$('#info').html(response);
-	        },
-	        error: function(e){
-				alert('Error: ' + e);
-	        }
-	        });
-        }
+	         $.ajax({
+        type: "POST",
+         url: form.attr( 'action' ),
+        data: form.serialize(),
+        success: function(response){
+            // we have the response
+		
+           var errors=response;
+		
+			if(errors.status == "Pass"){
+               
+                 $('#info').html("Success");
+                 
+             }else{
+                 errorInfo = "";
+                 for(i =0 ; i < errors.result.length ; i++){
+                     errorInfo += "<br>" + (i + 1) +". " + errors.result[i].field + ": "+ errors.result[i].rejectedValue + ":  "+errors.result[i].code;
+					
+					 $('[name="'+ errors.result[i].field +'"]', form).after("<span class='error' id="+errors.result[i].field+">&nbsp;"+errors.result[i].code+"</span>");
+                 }
+                 $('#error').html("Please correct following errors: " + errorInfo);
+                
+             }
+         },
+         error: function(e){
+             alert('Error: ' + e);
+         }
+    });
+        
+}
+		
+		
+		
 		function clearForm()
 		{
 			$(':input').not(':button, :submit, :reset, :hidden').val('');
@@ -30,12 +58,14 @@
 </head>
 <html>
 <body>
+	<spring:bind/>
 <form name="registration" id="registration" method="POST" action="#springUrl('/addRegistration')">
 	<table cellspacing="0" cellpadding="0" border="0" align="center">
 		<tbody>
 		<tr>
 			<td colspan="2">
 				<div id="info" style="color: green;"></div>
+                <div id="error"></div>
 			</td>
 		</tr>
 		<tr>
