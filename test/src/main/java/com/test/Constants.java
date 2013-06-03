@@ -1,6 +1,5 @@
 package com.test;
 
-import org.springframework.context.annotation.Profile;
 
 
 public class Constants {

@@ -2,7 +2,7 @@ package com.test.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection="address")
 public class Address {
 
 	private String addLine1;

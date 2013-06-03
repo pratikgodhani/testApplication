@@ -17,7 +17,7 @@
 	    function doAjaxPost() {
 	          // get the form values
 			var form = $('#registration');
-	         $.ajax({
+	         #[[$]]#.ajax({
         type: "POST",
          url: form.attr( 'action' ),
         data: form.serialize(),

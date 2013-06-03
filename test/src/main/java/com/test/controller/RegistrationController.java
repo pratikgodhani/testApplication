@@ -50,11 +50,11 @@ public class RegistrationController {
 		
 		validator.validate(userDetail, bindingResult);
 		if(bindingResult.hasErrors()){
-			formErrors.setResult("Fail");
+			formErrors.setStatus("Fail");
 			formErrors.setResult(bindingResult.getFieldErrors());
 			return formErrors;
 		}else{
-			formErrors.setResult("Pass");
+			formErrors.setStatus("Pass");
 		}
 		
 		

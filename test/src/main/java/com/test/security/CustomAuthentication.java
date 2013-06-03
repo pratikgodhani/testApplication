@@ -8,6 +8,10 @@ import org.springframework.security.core.GrantedAuthority;
 
 public class CustomAuthentication implements Authentication {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -134624898542713849L;
 	String name;
     ArrayList<GrantedAuthority> authorities;
     Object credentials;
