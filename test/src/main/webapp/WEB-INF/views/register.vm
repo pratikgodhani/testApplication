@@ -116,6 +116,30 @@
 				<input type="text" name="phone" id="phone" value="$!user.phone"/>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				Address
+			</td>
+			<td>
+				<input type="text" name="address.addLine1" id="address.addLine1" value="$!user.address.addLine1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				City
+			</td>
+			<td>
+				<input type="text" name="address.city" id="address.city" value="$!user.address.city"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Pincode
+			</td>
+			<td>
+				<input type="text" name="address.pincode" id="address.pincode" value="$!user.address.pincode"/>
+			</td>
+		</tr>
 		<tr align="center">
 			<td colspan="2">
 				<input type="button" name="save" value="Save" onclick="doAjaxPost(); return false;">

@@ -59,8 +59,6 @@ public class RegistrationController {
 		
 		
 		
-		String failedMsg = env.getProperty("registrationFailMsg");
-		String successMsg = env.getProperty("registrationSuccessMsg");
 		userDetail.setUserName(Constants.USER_PREFIX+userDetail.getUserName());
 		boolean result = registrationService.addUserDetails(userDetail);
 		if (result)

@@ -14,6 +14,7 @@ public class UserDetail {
 	private String userPwd;
 	private String email;
 	private String phone;
+	private Address address = new Address();
 
 
 	public String getUserName() {
@@ -63,5 +64,13 @@ public class UserDetail {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }
