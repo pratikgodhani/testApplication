@@ -9,6 +9,12 @@
 			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		</param-value>
 	</context-param>
+	<context-param>
+		<param-name>contextInitializerClasses</param-name>
+		<param-value>
+			com.test.config.ProfileInitializer
+		</param-value>
+	</context-param>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

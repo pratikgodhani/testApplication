@@ -3,6 +3,7 @@ package com.test.security;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	Environment env;
+	
 	@Autowired
+	@Qualifier("loginServiceImpl")
 	LoginService loginService;
 
 	@Override

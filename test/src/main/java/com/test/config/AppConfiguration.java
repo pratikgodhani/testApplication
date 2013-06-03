@@ -25,6 +25,7 @@ import com.mongodb.MongoClient;
 @ImportResource( { "classpath:spring-security.xml" } )
 @PropertySource({"registration.properties", "database.properties"})
 @EnableMongoRepositories(basePackages = "com.test.repository")
+
 public class AppConfiguration {
 
 	@Autowired
