@@ -162,5 +162,3 @@ pip-log.txt
 */.classpath/*
 */.project/*
 */.settings/*
-*/bin/
-*/target/*
