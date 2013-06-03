@@ -159,6 +159,7 @@ pip-log.txt
 .DS_Store
 
 # Eclipse specific files
-*/.classpath/*
-*/.project/*
+*/.classpath
+*/.project
 */.settings/*
+*/target/*
