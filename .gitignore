@@ -157,3 +157,10 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+# Eclipse specific files
+*/.classpath/*
+*/.project/*
+*/.settings/*
+*/bin/
+*/target/*
