@@ -37,6 +37,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 				return new CustomAuthentication(username, authorities, password, null, null, true);
 			}
 			else if("admin".equals(username) && "admin".equals(password)){
+				authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
 				authorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
 				return new CustomAuthentication(username, authorities, password, null, null, true);
 			}

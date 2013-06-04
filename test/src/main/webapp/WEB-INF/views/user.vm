@@ -1,18 +1,16 @@
-Only authenticated user/admin should see this...
-<br/><br/>
-Testing the Object $vsecurity
-<br/><br/>
-Name of the principal is: ${vsecurity.userName}
-<br/><br/>
 #if($vsecurity.authorizedUser)
-    This is for user
+	<br/><br/>
+    Welcome USER - ${vsecurity.userName}
+#elseif($vsecurity.authorizedAdmin)
+     <br/><br/>
+    Welcome ADMIN - ${vsecurity.userName}
 #end
 <br/><br/>
-#if($vsecurity.authorizedAdmin)
-     This is for ADMIN
+Features
+<ul>
+#foreach($feature in $features)
+<li>$feature</li>
 #end
+</ul>
 <br/><br/>
-
-
-
 <a href="logout">Log Out</a>
