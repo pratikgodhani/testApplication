@@ -9,6 +9,27 @@ import org.springframework.stereotype.Service;
 import com.test.model.UserDetail;
 import com.test.repository.UserDetailRepository;
 
+/**
+ * This is LoginService implementation
+ * There are two login service implementations in package.
+ * Both are named loginServiceImpl
+ * 
+ * These are two different Implementations for two different profiles.
+ * Whenever a specified profile is loaded the service implementation class
+ * specified using profile annotation will be loaded
+ * 
+ * The name of the profile is specified in brackets
+ * 
+ * The active profile is set while initializing the application
+ * It can be specified using activeprofile annotation on configuration class
+ * or we can use custom application context initializer which will be called 
+ * while initializing the application which intern will set the active profile by reading it from
+ * property file or system environment var
+ * 
+ * refer @link ProfileInitializer
+ * 
+ *
+ */
 @Service("loginServiceImpl")
 @Profile("dev")
 public class LoginServiceImpl implements LoginService {

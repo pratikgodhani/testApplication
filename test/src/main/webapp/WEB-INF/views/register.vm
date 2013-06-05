@@ -27,7 +27,7 @@
            var errors=response;
 			if(errors.status == "Pass"){
                  $('#info').html("Success");
-				 $(window).attr("location","address/"+errors.userId);
+				 $(window).attr("location","address/"+errors.result);
              }else{
                  errorInfo = "";
                  for(i =0 ; i < errors.result.length ; i++){

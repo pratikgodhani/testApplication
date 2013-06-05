@@ -45,15 +45,40 @@ public class RegistrationController {
 		return new ModelAndView("register");
 	}
 
+	
+	
+	/**
+	 * This controller is responsible for handling the registration of new user
+	 * Form validation is performed before passing the UserDetail bean to service
+	 * 
+	 *  Response of the controller is FormErrors annotated using {@literal@}ResponseBody
+	 *  ResponseBody annotation indicates that a method return value should be bound to the web response body. 
+	 * Here we have used JSON and for that we have included Jackson dependency in POM.xml without which view will throw a 406 error
+	 * 
+	 * FormErrors is  a class which stores status, result. This object is used on view to render result/errors.
+	 *  
+	 *   
+	 * @param userDetail
+	 * @param bindingResult
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/addRegistration")
-	public @ResponseBody
-	FormErrors addRegistrationDetails(
+	public @ResponseBody FormErrors addRegistrationDetails(
 			@ModelAttribute(value = "user") UserDetail userDetail,
 			BindingResult bindingResult) throws Exception {
 
 		FormErrors formErrors = new FormErrors();
 
+		/*validate the form using CustomValidator
+		 * Validator stores the error messages in bindingResult Object.
+		 * All results can be obtained using bindingResult.getAllErrors()
+		 * 
+		 * To get field specific errors use bindingResult.getFieldErrors()
+		 */
 		validator.validate(userDetail, bindingResult);
+		
+		//If there were any errors in validation set errors in formErros and set status to fail 
 		if (bindingResult.hasErrors()) {
 			formErrors.setStatus("Fail");
 			formErrors.setResult(bindingResult.getFieldErrors());
@@ -64,14 +89,29 @@ public class RegistrationController {
 			boolean result = registrationService.addUserDetails(userDetail);
 			formErrors.setStatus("Fail");
 			if (result) {
-				formErrors.setResult(userDetail.getId());
-				formErrors.setUserId(userDetail.getId().toString());
+				/*It is important to store userId as string otherwise javascript does not identify it as a string 
+				 * and will consider it as an object
+				 * 
+				 * The userId is passed so that it can be forwarded in next request to address form as a path variable.
+				 * There it will be used to map the specified address with the UserDetails associated with given userID
+				 * And the userdetails will be updated with id of address which is newly created
+				 * This is required as we are storing UserDetails and address separately in separate collections
+				 * 
+				 */
+				formErrors.setResult(userDetail.getId().toString());
 				formErrors.setStatus("Pass");
 			}
 			return formErrors;
 		}
 	}
 
+	
+	/**
+	 * userID is passed as path variable 
+	 * @param model
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(value = "/address/{userId}", method = RequestMethod.GET)
 	public ModelAndView getAddress(ModelMap model, @PathVariable String userId) {
 		model.addAttribute("address", new Address());
@@ -79,18 +119,7 @@ public class RegistrationController {
 		return new ModelAndView("address");
 	}
 
-	/*@RequestMapping(value = "/address/{userId}", method = RequestMethod.POST)
-	public @ResponseBody
-	FormErrors getAddress(@ModelAttribute(value="address") Address address, BindingResult bindingResult, @PathVariable String userId) throws Exception {
-		FormErrors formErrors = new FormErrors();
-		boolean result = registrationService.addAddress(address, userId);
-		formErrors.setStatus("Fail");
-		if (result)
-		{
-			formErrors.setStatus("Pass");
-		}
-		return formErrors;
-	}*/
+	
 	
 	@RequestMapping(value = "/address", method = RequestMethod.POST)
 	public @ResponseBody

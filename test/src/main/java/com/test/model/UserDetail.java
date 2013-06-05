@@ -1,7 +1,6 @@
 package com.test.model;
 
 import org.bson.types.ObjectId;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +15,19 @@ public class UserDetail {
 	private String userPwd;
 	private String email;
 	private String phone;
+	
+	
+	/*
+	 *Here we have used to DFRef annotation which means the address will not be stored as an embeded template in
+	 *userdetail template instead it will be stored in a separate collection. 
+	 *And we are just adding a reference to address obejct here
+	 *
+	 *Without this annotation the address will be stored as an embedded template
+	 *
+	 *currently spring mongo data does not support cascade save, so special handling is needed here.
+	 *Without @DbRef no special handling is required while saving and the address will be saved automatically as embeded template
+	 *  
+	 */
 	@DBRef
 	private Address address;
 

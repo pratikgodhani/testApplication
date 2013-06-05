@@ -30,6 +30,14 @@ import com.mongodb.MongoClient;
 
 public class AppConfiguration {
 
+	
+	/*
+	 * 
+	 * This env variable can be used to access properties from all the property files present in src/main/resources folder
+	 * To make the properties available to env one has to specify them using @PropertySource annotation as specified above
+	 * This variable is autowired and loads all the properties automatically
+	 * One can access property values using env.getProperty("propertyKey")
+	 */
 	@Autowired
 	Environment env;
 	
@@ -47,7 +55,7 @@ public class AppConfiguration {
 	@Bean
 	public MongoTemplate mongoTemplate() throws UnknownHostException {
 		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
-		// mongoTemplate.set
+	
 		return mongoTemplate;
 	}
 }
