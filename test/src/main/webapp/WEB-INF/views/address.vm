@@ -1,0 +1,108 @@
+<head>
+
+    <title>| Address </title>
+
+	<style type="text/css">
+		
+		.error{
+		color:#ff0000;
+		}
+		
+    </style>
+	
+	
+    <!--themes-->
+	<script src="../resources/jquery-1.9.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    function doAjaxPost() {
+	          // get the form values
+			var form = $('#address');
+			alert(form);
+			alert(form.attr( 'action' ));
+	         #[[$]]#.ajax({
+        type: "POST",
+         url: form.attr( 'action' ),
+        data: form.serialize(),
+        success: function(response){
+            // we have the response
+		
+           var errors=response;
+		
+			if(errors.status == "Pass"){
+               
+                 $('#info').html("Success");
+                 
+             }else{
+			 	$('#info').html("Fail");
+             }
+         },
+         error: function(e){
+             alert('Error: ' + e);
+         }
+    });
+        
+}
+		
+		
+		
+		function clearForm()
+		{
+			$(':input').not(':button, :submit, :reset, :hidden').val('');
+		}
+	 </script>
+</head>
+<html>
+<body>
+
+<form name="address" id="address" method="POST" action="#springUrl('/address/')$userId">
+	<table cellspacing="0" cellpadding="0" border="0" align="center">
+		<tbody>
+		<tr>
+			<td colspan="2">
+				<div id="info" style="color: green;"></div>
+          
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="info" style="color: green;"></div>
+          
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Address
+			</td>
+			<td>
+				<input type="text" name="addLine1" id="addLine1" value="$!address.addLine1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				City
+			</td>
+			<td>
+				<input type="text" name="city" id="city" value="$!address.city"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Pincode
+			</td>
+			<td>
+				<input type="text" name="pincode" id="pincode" value="$!address.pincode"/>
+			</td>
+		</tr>
+		<tr align="center">
+			<td colspan="2">
+				<input type="button" name="save" value="Save" onclick="doAjaxPost(); return false;">
+				<input type="button" name="cancel" value="Cancel"  onclick="clearForm(); return false;">
+			</td>
+		</tr>
+		
+		</tbody>
+	</table>
+
+</form>
+</body>
+</html>

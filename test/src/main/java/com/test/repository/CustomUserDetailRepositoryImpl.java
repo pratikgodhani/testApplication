@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.repository.support.SimpleMongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.test.Constants;
+import com.test.model.Address;
 import com.test.model.UserDetail;
 
 
@@ -26,5 +28,16 @@ public class CustomUserDetailRepositoryImpl implements CustomUserDetailRepositor
 		return mongoTemplate.find(query,UserDetail.class);
 		
 	}
+	
+	/*@Override
+	public UserDetail save(UserDetail userDetail) {
+
+		System.out.println("11111111111111111111111111111111111111111");
+		//SimpleMongoRepository<T, Serializable>
+		mongoTemplate.save(userDetail.getAddress());
+		mongoTemplate.save(userDetail);
+		//mongoTemplate.save(userDetail.getAddress(), Address.class);
+		return userDetail;
+	}*/
 
 }

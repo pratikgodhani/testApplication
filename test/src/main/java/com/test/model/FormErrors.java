@@ -4,6 +4,7 @@ public class FormErrors {
 
 	String status;
 	Object result;
+	String userId;
 	public String getStatus() {
 		return status;
 	}
@@ -15,6 +16,12 @@ public class FormErrors {
 	}
 	public void setResult(Object result) {
 		this.result = result;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	

@@ -1,7 +1,9 @@
 package com.test.model;
 
 import org.bson.types.ObjectId;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -14,7 +16,8 @@ public class UserDetail {
 	private String userPwd;
 	private String email;
 	private String phone;
-	private Address address = new Address();
+	@DBRef
+	private Address address;
 
 
 	public String getUserName() {
@@ -72,5 +75,13 @@ public class UserDetail {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 }
