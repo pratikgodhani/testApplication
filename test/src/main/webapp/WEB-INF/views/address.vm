@@ -17,8 +17,6 @@
 	    function doAjaxPost() {
 	          // get the form values
 			var form = $('#address');
-			alert(form);
-			alert(form.attr( 'action' ));
 	         #[[$]]#.ajax({
         type: "POST",
          url: form.attr( 'action' ),
@@ -54,7 +52,8 @@
 <html>
 <body>
 
-<form name="address" id="address" method="POST" action="#springUrl('/address/')$userId">
+<form name="address" id="address" method="POST" action="#springUrl('/address')">
+	<input type="hidden" id="userId" name="userId" value="$userId" />
 	<table cellspacing="0" cellpadding="0" border="0" align="center">
 		<tbody>
 		<tr>

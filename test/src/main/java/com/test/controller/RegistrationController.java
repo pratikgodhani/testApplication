@@ -79,9 +79,22 @@ public class RegistrationController {
 		return new ModelAndView("address");
 	}
 
-	@RequestMapping(value = "/address/{userId}", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/address/{userId}", method = RequestMethod.POST)
 	public @ResponseBody
 	FormErrors getAddress(@ModelAttribute(value="address") Address address, BindingResult bindingResult, @PathVariable String userId) throws Exception {
+		FormErrors formErrors = new FormErrors();
+		boolean result = registrationService.addAddress(address, userId);
+		formErrors.setStatus("Fail");
+		if (result)
+		{
+			formErrors.setStatus("Pass");
+		}
+		return formErrors;
+	}*/
+	
+	@RequestMapping(value = "/address", method = RequestMethod.POST)
+	public @ResponseBody
+	FormErrors getAddress(@ModelAttribute(value="address") Address address, BindingResult bindingResult, @ModelAttribute (value="userId") String userId) throws Exception {
 		FormErrors formErrors = new FormErrors();
 		boolean result = registrationService.addAddress(address, userId);
 		formErrors.setStatus("Fail");
