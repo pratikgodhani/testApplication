@@ -18,8 +18,15 @@ public class ProfileInitializer implements ApplicationContextInitializer<Configu
 	public void initialize(ConfigurableWebApplicationContext applicationContext) {
 
 		String activeProfile=System.getenv("myapp.active.profile");
-		System.out.println("Active profiles: "+activeProfile);
-		applicationContext.getEnvironment().setActiveProfiles(activeProfile);
+		if(activeProfile==null){
+			System.out.println("Please set system environment variable 'myapp.active.profile'");
+			System.out.println("Possible profiles are dev/prod");
+			System.exit(1);
+		}else{
+			System.out.println("Active profiles: "+activeProfile);
+			applicationContext.getEnvironment().setActiveProfiles(activeProfile);	
+		}
+		
 	}
 
 }
