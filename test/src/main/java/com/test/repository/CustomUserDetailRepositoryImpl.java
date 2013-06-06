@@ -45,6 +45,7 @@ public class CustomUserDetailRepositoryImpl implements CustomUserDetailRepositor
 	public long increaseCounter(String collectionName){
 		FindAndModifyOptions findAndModifyOptions = new FindAndModifyOptions();
 		findAndModifyOptions.returnNew(true);
+		findAndModifyOptions.upsert(true);
         Query query = new Query(Criteria.where("collectionName").is(collectionName));
         Update update = new Update().inc("sequence", 1);
         Counter counter = mongoTemplate.findAndModify(query, update, findAndModifyOptions, Counter.class); // return old Counter object
