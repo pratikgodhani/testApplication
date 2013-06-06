@@ -9,28 +9,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserDetail {
 	@Id
 	private ObjectId id;
+	private long autoId;
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String userPwd;
 	private String email;
 	private String phone;
-	
-	
+
 	/*
-	 *Here we have used to DFRef annotation which means the address will not be stored as an embeded template in
-	 *userdetail template instead it will be stored in a separate collection. 
-	 *And we are just adding a reference to address obejct here
-	 *
-	 *Without this annotation the address will be stored as an embedded template
-	 *
-	 *currently spring mongo data does not support cascade save, so special handling is needed here.
-	 *Without @DbRef no special handling is required while saving and the address will be saved automatically as embeded template
-	 *  
+	 * Here we have used to DFRef annotation which means the address will not be
+	 * stored as an embeded template inuserdetail template instead it will be
+	 * stored in a separate collection.And we are just adding a reference to
+	 * address obejct here
+	 * 
+	 * Without this annotation the address will be stored as an embedded
+	 * template
+	 * 
+	 * currently spring mongo data does not support cascade save, so special
+	 * handling is needed here.Without @DbRef no special handling is required
+	 * while saving and the address will be saved automatically as embeded
+	 * template
 	 */
 	@DBRef
 	private Address address;
-
 
 	public String getUserName() {
 		return userName;
@@ -72,7 +74,6 @@ public class UserDetail {
 		this.lastName = lastName;
 	}
 
-
 	public String getPhone() {
 		return phone;
 	}
@@ -95,5 +96,13 @@ public class UserDetail {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public long getAutoId() {
+		return autoId;
+	}
+
+	public void setAutoId(long autoId) {
+		this.autoId = autoId;
 	}
 }

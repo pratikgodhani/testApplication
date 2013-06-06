@@ -18,12 +18,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	AddressRepository addressRepository;
 
 	public boolean addUserDetails(final UserDetail userDetail) throws Exception {
+		userDetail.setAutoId(userDetailRepository.increaseCounter("users"));
 		userDetailRepository.save(userDetail);
-		if (null != userDetail) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 
 	public boolean addAddress(Address address, final String userId)

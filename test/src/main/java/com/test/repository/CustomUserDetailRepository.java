@@ -8,7 +8,7 @@ public interface CustomUserDetailRepository {
 
 	public List<UserDetail> validateUser(String name, String password);
 
-	//UserDetail save(UserDetail userDetail);
+	long increaseCounter(String collectionName);
 	
 	
 }

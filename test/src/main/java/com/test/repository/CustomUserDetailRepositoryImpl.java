@@ -3,12 +3,15 @@ package com.test.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.test.Constants;
+import com.test.model.Counter;
 import com.test.model.UserDetail;
 
 /**
@@ -39,18 +42,13 @@ public class CustomUserDetailRepositoryImpl implements CustomUserDetailRepositor
 		
 	}
 	
-	/*
-	 * The save method in UserDetailRepository can be overriden by specifying it in custom interface and implementing it here
-	 * 
-	 * @Override
-	public UserDetail save(UserDetail userDetail) {
-
-		System.out.println("11111111111111111111111111111111111111111");
-		//SimpleMongoRepository<T, Serializable>
-		mongoTemplate.save(userDetail.getAddress());
-		mongoTemplate.save(userDetail);
-		//mongoTemplate.save(userDetail.getAddress(), Address.class);
-		return userDetail;
-	}*/
+	public long increaseCounter(String collectionName){
+		FindAndModifyOptions findAndModifyOptions = new FindAndModifyOptions();
+		findAndModifyOptions.returnNew(true);
+        Query query = new Query(Criteria.where("collectionName").is(collectionName));
+        Update update = new Update().inc("sequence", 1);
+        Counter counter = mongoTemplate.findAndModify(query, update, findAndModifyOptions, Counter.class); // return old Counter object
+        return counter.getSequence();
+    }
 
 }

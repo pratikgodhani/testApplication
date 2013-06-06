@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.velocity.VelocityConfig;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
@@ -37,7 +39,7 @@ import com.test.security.VelocitySecurityWrapper;
 				@Filter(value=CustomAuthenticationProvider.class, type=FilterType.ASSIGNABLE_TYPE),
 				@Filter(value=AppConfiguration.class, type=FilterType.ASSIGNABLE_TYPE)})
 @EnableWebMvc
-public class MvcConfiguration{
+public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 	
 
@@ -72,4 +74,8 @@ public class MvcConfiguration{
 		return viewResolver;
 	}
 
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	}
 }
